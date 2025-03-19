@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'oauth2_provider'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ( 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',)
+}
+
+OAUTH2_PROVIDER = { 'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore' }
 
 ROOT_URLCONF = 'courseapisv1.urls'
 
@@ -149,3 +156,6 @@ cloudinary.config(
     api_secret = "ftGud0r1TTqp0CGp5tjwNmkAm-A", # Click 'View API Keys' above to copy your API secret
     secure=True
 )
+
+CLIENT_ID = '4P7ouM0ljvm3e5phrYfCVVhARoppjWcB0PcdPpbZ'
+CLIENT_SECRET = 'akXuJ19UDM425Bu1zHO4tQKpsqrDgiMRnnC52WQDw2FVmMPfbok9VEtLZEErLV9xkWyIIHuzLijI5A24wKBv2G9MdiLU3uJiFjgKQd9LskSPbtQPslie9sWieK1NVjEe'
