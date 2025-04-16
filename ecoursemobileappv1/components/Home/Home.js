@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, KeyboardAvoidingView, Platform, Text, TouchableOpacity, View } from "react-native";
 import MyStyles from "../../styles/MyStyles";
 import { useEffect, useState } from "react";
 import { Chip, List, Searchbar } from "react-native-paper";
@@ -70,26 +70,24 @@ const Home = () => {
     }
 
     return (
-        <View style={MyStyles.container}>
-            <Text style={MyStyles.subject}>E-COURSE ONLINE</Text>
-
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={MyStyles.container}>
             <View style={[MyStyles.row, MyStyles.wrap]}>
             <TouchableOpacity onPress={() => search(null, setCateId)}>
                 <Chip style={MyStyles.m}  icon="label">Tất cả</Chip>
             </TouchableOpacity>
 
-            {categories.map(c => <TouchableOpacity key={c.id} onPress={() => search(c.id, setCateId)}>
+            {categories.map(c => <TouchableOpacity key={`Cate${c.id}`} onPress={() => search(c.id, setCateId)}>
                 <Chip style={MyStyles.m}  icon="label">{c.name}</Chip>
             </TouchableOpacity>)}
             </View>
 
             <Searchbar placeholder="Tìm kiếm khóa học.." onChangeText={t => search(t, setKw)} value={kw} />
-
             
             <FlatList ListFooterComponent={loading && <ActivityIndicator />} onEndReached={loadMore} data={courses} 
-                renderItem={({item}) => <List.Item key={item.id} title={item.subject} description={item.created_date} 
+                renderItem={({item}) => <List.Item key={`Course${item.id}`} title={item.subject} description={item.created_date} 
                                                    left={() => <TouchableOpacity onPress={() => nav.navigate("lesson", {"courseId": item.id})}><Image style={MyStyles.avatar} source={{uri: item.image}} /></TouchableOpacity>} />} />
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 

@@ -4,7 +4,9 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         padding: 5
-        // alignItems: "center"
+    }, center: {
+        alignItems: "center",
+        justifyContent: "center"
     }, subject: {
         fontSize: 30,
         color: "blue",
@@ -14,7 +16,7 @@ export default StyleSheet.create({
     }, wrap: {
         flexWrap: "wrap"
     }, m: {
-        margin: 5
+        margin: 8
     }, avatar: {
         width: 80,
         height: 80,
