@@ -17,9 +17,9 @@ const Stack = createNativeStackNavigator();
 const StackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="home" component={Home} options={{title: "Danh sách khóa học"}} />
-      <Stack.Screen name="lesson" component={Lessons} options={{title: "Danh sách bài học"}} />
-      <Stack.Screen name="lesson-details" component={LessonDetails} options={{title: "Chi tiết bài học"}} />
+      <Stack.Screen name="home" component={Home} options={{ title: "Danh sách khóa học" }} />
+      <Stack.Screen name="lesson" component={Lessons} options={{ title: "Danh sách bài học" }} />
+      <Stack.Screen name="lesson-details" component={LessonDetails} options={{ title: "Chi tiết bài học" }} />
     </Stack.Navigator>
   );
 }
@@ -29,17 +29,17 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   const user = useContext(MyUserContext);
   return (
-    <Tab.Navigator screenOptions={{headerShown: true}}>
-      <Tab.Screen name="index" component={StackNavigator} options={{title: "Khóa học", tabBarIcon: () => <Icon size={30} source="home" />}} />
+    <Tab.Navigator >
+      <Tab.Screen name="index" component={StackNavigator} options={{ headerShown: false, title: "Khóa học", tabBarIcon: () => <Icon size={30} source="home" /> }} />
 
-      {user === null?<>
-        <Tab.Screen name="login" component={Login} options={{ title: "Đăng nhập", tabBarIcon: () => <Icon size={30} source="account" />}} />
-        <Tab.Screen name="register" component={Register} options={{ title: 'Đăng ký', tabBarIcon: () => <Icon size={30} source="account-plus-outline" />}} />
-      </>:<>
-        <Tab.Screen name="login" component={Profile} options={{ title: "Tài khoản", tabBarIcon: () => <Icon size={30} source="account" />}} />
+      {user === null ? <>
+        <Tab.Screen name="login" component={Login} options={{ title: "Đăng nhập", tabBarIcon: () => <Icon size={30} source="account" /> }} />
+        <Tab.Screen name="register" component={Register} options={{ title: 'Đăng ký', tabBarIcon: () => <Icon size={30} source="account-plus-outline" /> }} />
+      </> : <>
+        <Tab.Screen name="login" component={Profile} options={{ title: "Tài khoản", tabBarIcon: () => <Icon size={30} source="account" /> }} />
       </>}
 
-      
+
     </Tab.Navigator>
   );
 }
@@ -53,7 +53,7 @@ const App = () => {
         <NavigationContainer>
           <TabNavigator />
         </NavigationContainer>
-    </MyDispatchContext.Provider>
+      </MyDispatchContext.Provider>
     </MyUserContext.Provider>
   );
 }

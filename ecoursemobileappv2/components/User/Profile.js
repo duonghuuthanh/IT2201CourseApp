@@ -20,7 +20,7 @@ const Profile = () => {
 
     return (
         <View>
-            <Text style={MyStyles.subject}>Chào {user?._j?.first_name} {user?._j?.last_name}!</Text>
+            <Text style={MyStyles.subject}>Chào {user?.first_name} {user.last_name}!</Text>
             <Button onPress={logout} mode="contained">Đăng xuất</Button>
         </View>
     );
